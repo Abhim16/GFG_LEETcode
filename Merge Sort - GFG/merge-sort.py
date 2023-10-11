@@ -1,40 +1,44 @@
 #User function Template for python3
 
 class Solution:
-    def mergeSort(self,arr, l, r):
-        #code here
-            if len(arr)>1:
-                mid=len(arr)//2
-                L=arr[:mid]
-                R=arr[mid:]
-                self.mergeSort(L,l,r)
-                self.mergeSort(R,l,r)
-                i=j=k=0
+    def merge(self, arr, l, m, r):
+        n1 = m - l + 1
+        n2 = r - m
 
-#computing value in arr
+        L = arr[l:l + n1]
+        R = arr[m + 1:m + 1 + n2]
 
-                while i<len(L) and j<len(R):
-                    if R[j]>=L[i]:
-                        arr[k]=L[i]
-                        i+=1
-                    else:
-                        arr[k]=R[j]
-                        j+=1
-                    k+=1
+        i = 0
+        j = 0
+        k = l
 
-#adding for remaining left
-                while i<len(L):
-                    arr[k]=L[i]
-                    i+=1
-                    k+=1
+        while i < n1 and j < n2:
+            if L[i] < R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
 
+        while i < n1:
+            arr[k] = L[i]
+            i += 1
+            k += 1
 
-                while j<len(R):
-                    arr[k]=R[j]
-                    j+=1
-                    k+=1
-            return
-        
+        while j < n2:
+            arr[k] = R[j]
+            j += 1
+            k += 1
+
+    def mergeSort(self, arr, l, r):
+        if l < r:
+            m = (l + (r - 1)) // 2
+
+            self.mergeSort(arr, l, m)
+            self.mergeSort(arr, m + 1, r)
+            self.merge(arr, l, m, r)
+
         #code here
 
 
