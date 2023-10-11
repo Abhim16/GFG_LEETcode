@@ -4,10 +4,29 @@ class Solution:
     #Function to sort a list using quick sort algorithm.
     def quickSort(self,arr,low,high):
         # code here
-        arr.sort()
+        
+        if low< high:
+            partition_index = self.partition(arr, low, high)
+            self.quickSort(arr, low, partition_index-1)
+            self.quickSort(arr, partition_index+1, high)
     
-    
-        # code here
+    def partition(self,arr,low,high):
+        
+        pivot=arr[low]
+        i=low+1
+        j=high
+        
+        while True:
+            while i <= j and arr[i] <= pivot:
+                i+=1
+            while j >= i and arr[j] >= pivot:
+                j-=1
+                
+            if i<j:
+                arr[i], arr[j]=arr[j], arr[i]
+            else:
+                arr[low], arr[j]= arr[j], arr[low]
+                return j
     
 
 
