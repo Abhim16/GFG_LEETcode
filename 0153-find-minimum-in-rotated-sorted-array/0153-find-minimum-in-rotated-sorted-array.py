@@ -5,6 +5,8 @@ class Solution:
         minn = nums[0]
         while l<=h:
             mid = (l+h)//2
+            if nums[l]<=nums[mid] and nums[mid]<=nums[h]:
+                minn = min(minn,nums[l])
             if nums[l]<=nums[mid]:
                 minn = min(minn,nums[l])
                 l = mid+1
